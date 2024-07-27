@@ -7,20 +7,14 @@ dotenv.config();
 
 const app = express();
 
-// Middleware to handle CORS
+// Configure CORS to allow requests from any origin
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*'); // Allow all origins
+  res.header('Access-Control-Allow-Origin', 'https://wizstake-mines.onrender.com/start'); // Replace with your actual frontend URL
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   next();
 });
 
-// You can use `cors` middleware here as an alternative
-// app.use(cors({
-//   origin: '*', // Allow all origins
-//   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-//   allowedHeaders: ['Content-Type', 'Authorization'],
-// }));
 
 app.use(express.json());
 
