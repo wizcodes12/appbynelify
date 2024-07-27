@@ -9,7 +9,7 @@ const app = express();
 
 // Configure CORS to allow requests from any origin
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'https://appbynelify.onrender.com'); // Replace with your actual frontend URL
+  res.header('Access-Control-Allow-Origin', 'https://wizstake-mines.onrender.com/'); // Replace with your actual frontend URL
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   next();
