@@ -6,8 +6,15 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const app = express();
-app.use(cors());
 app.use(express.json());
+
+// Configure CORS to allow requests from your Netlify frontend domain
+const corsOptions = {
+  origin: 'https://appbynelify.onrender.com/', // Replace with your Netlify app domain
+  optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI, {
