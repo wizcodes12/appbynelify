@@ -6,15 +6,21 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const app = express();
+
+// CORS configuration
+const allowedOrigins = ['https://appbynelify.onrender.com/'];
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true); // Allow requests with no origin, like mobile apps or curl requests
+    if (allowedOrigins.indexOf(origin) === -1) {
+      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  }
+}));
+
 app.use(express.json());
-
-// Configure CORS to allow requests from your Netlify frontend domain
-const corsOptions = {
-  origin: 'https://appbynelify.onrender.com/', // Replace with your Netlify app domain
-  optionsSuccessStatus: 200,
-};
-
-app.use(cors(corsOptions));
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI, {
