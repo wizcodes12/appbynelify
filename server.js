@@ -9,7 +9,9 @@ const app = express();
 
 // Configure CORS to allow requests from any origin
 app.use(cors({
-  origin: '*'
+  origin: '*', // Allow all origins
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 
 app.use(express.json());
